@@ -31,7 +31,7 @@ func Reduce(sendbuff, recvbuff cutil.Mem,
 	d DataType,
 	op RedOp,
 	root int32,
-	c Comm,
+	c *Comm,
 	s Streamer) (err error) {
 	if recvbuff == nil {
 		err = result(C.ncclReduce(
@@ -67,7 +67,7 @@ func Broadcast(sendbuff, recvbuff cutil.Mem,
 	count uint,
 	d DataType,
 	root int32,
-	c Comm,
+	c *Comm,
 	s Streamer) (err error) {
 	err = result(C.ncclBroadcast(
 		sendbuff.Ptr(),
@@ -89,7 +89,7 @@ func AllReduce(sendbuff, recvbuff cutil.Mem,
 	count uint,
 	d DataType,
 	op RedOp,
-	c Comm,
+	c *Comm,
 	s Streamer) (err error) {
 	err = result(C.ncclAllReduce(
 		sendbuff.Ptr(),
@@ -113,7 +113,7 @@ func ReduceScatter(sendbuff, recvbuff cutil.Mem,
 	recvcount uint,
 	d DataType,
 	op RedOp,
-	c Comm,
+	c *Comm,
 	s Streamer) (err error) {
 
 	err = result(C.ncclReduceScatter(
@@ -136,7 +136,7 @@ func ReduceScatter(sendbuff, recvbuff cutil.Mem,
 func AllGather(sendbuff, recvbuff cutil.Mem,
 	sendcount uint,
 	d DataType,
-	c Comm,
+	c *Comm,
 	s Streamer) (err error) {
 
 	err = result(C.ncclAllGather(

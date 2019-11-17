@@ -57,10 +57,10 @@ func CommInitRank(nrank int32, commID UniqueID, rank int32) (c *Comm, err error)
 	return c, nil
 }
 
-// ComInitAll - Creates a clique of communicators (single process version).
+// CommInitAll - Creates a clique of communicators (single process version).
 // This is a convenience function to create a single-process communicator clique.
 // Returns an array of ndev newly initialized communicators in comm.
-func ComInitAll(devlist []int32) (comms []*Comm, err error) {
+func CommInitAll(devlist []int32) (comms []*Comm, err error) {
 	cs := make([]C.ncclComm_t, len(devlist))
 	devc := int32tocarray(devlist)
 	ndev := C.int(len(devlist))
