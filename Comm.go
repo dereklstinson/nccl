@@ -22,6 +22,7 @@ func commtoC() []C.ncclComm_t{
 func ctoComm(cs []C.ncclComm_t) (comms []*Comm) {
 	comms = make([]*Comm, len(cs))
 	for i := range cs {
+		comms[i] = new(Comm)
 		comms[i].com = cs[i]
 	}
 	return comms
